@@ -29,6 +29,8 @@ public class RomanNumeralsConverterTest {
         assertEquals("Passing 500","D", converter.toRomanNumeral(500));
         assertEquals("Passing 400","CD", converter.toRomanNumeral(400));
 
+        assertEquals("Passing 1000","M", converter.toRomanNumeral(1000));
+
     }
 
 }

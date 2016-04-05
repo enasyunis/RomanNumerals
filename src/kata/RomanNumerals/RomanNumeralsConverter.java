@@ -10,7 +10,10 @@ public class RomanNumeralsConverter {
             Future Developer - The order of the statements matters!
          */
         while (leftOver > 0) {
-            if (leftOver >= 500) {
+            if (leftOver >= 1000) {
+                sb.append("M");
+                leftOver -= 1000;
+            } else if (leftOver >= 500) {
                 sb.append("D");
                 leftOver -= 500;
             } else if (leftOver >= 400) {
