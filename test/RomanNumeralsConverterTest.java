@@ -30,6 +30,7 @@ public class RomanNumeralsConverterTest {
         assertEquals("Passing 400","CD", converter.toRomanNumeral(400));
 
         assertEquals("Passing 1000","M", converter.toRomanNumeral(1000));
+        assertEquals("Passing 900","CM", converter.toRomanNumeral(900));
 
     }
 

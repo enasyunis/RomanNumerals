@@ -13,6 +13,9 @@ public class RomanNumeralsConverter {
             if (leftOver >= 1000) {
                 sb.append("M");
                 leftOver -= 1000;
+            } else if (leftOver >= 900) {
+                sb.append("CM");
+                leftOver -= 900;
             } else if (leftOver >= 500) {
                 sb.append("D");
                 leftOver -= 500;
