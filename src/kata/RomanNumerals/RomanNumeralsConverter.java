@@ -10,7 +10,10 @@ public class RomanNumeralsConverter {
             Future Developer - The order of the statements matters!
          */
         while (leftOver > 0) {
-            if (leftOver >= 100) {
+            if (leftOver >= 500) {
+                sb.append("D");
+                leftOver -= 500;
+            } else if (leftOver >= 100) {
                 sb.append("C");
                 leftOver -= 100;
             } else if (leftOver >= 90) { // interesting how I don't have to test for ANY repetition
