@@ -32,6 +32,10 @@ public class RomanNumeralsConverterTest {
         assertEquals("Passing 1000","M", converter.toRomanNumeral(1000));
         assertEquals("Passing 900","CM", converter.toRomanNumeral(900));
 
+        // extra valid tests to make sure
+        assertEquals("Passing 3999","MMMCMXCIX", converter.toRomanNumeral(3999));
+
+
     }
 
     @Test(expected = IllegalArgumentException.class)
