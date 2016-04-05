@@ -33,7 +33,8 @@ public class RomanNumeralsConverterTest {
         assertEquals("Passing 900","CM", converter.toRomanNumeral(900));
 
         // extra valid tests to make sure
-        assertEquals("Passing 3999","MMMCMXCIX", converter.toRomanNumeral(3999));
+        assertEquals("Passing 3999","MMMCMXCIX", converter.toRomanNumeral(3999)); // max number
+        assertEquals("Passing 0","", converter.toRomanNumeral(0)); // min number
 
 
     }
