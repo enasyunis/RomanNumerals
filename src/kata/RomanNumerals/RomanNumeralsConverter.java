@@ -8,9 +8,11 @@ public class RomanNumeralsConverter {
         while (leftOver > 0) {
             if (leftOver >= 5) {
                 sb.append("V");
-                leftOver-=5;
-            }
-            else if (leftOver >= 1) {
+                leftOver -= 5;
+            } else if (leftOver >= 4) {
+                sb.append("IV");
+                leftOver -= 4;
+            } else if (leftOver >= 1) {
                 sb.append("I");
                 leftOver--;
             }
