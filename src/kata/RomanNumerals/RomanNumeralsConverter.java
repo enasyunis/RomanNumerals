@@ -6,7 +6,10 @@ public class RomanNumeralsConverter {
         StringBuilder sb = new StringBuilder();
         int leftOver = arabicNumber;
         while (leftOver > 0) {
-            if (leftOver >= 10) {
+            if (leftOver >= 50) {
+                sb.append("L");
+                leftOver -= 50;
+            } else if (leftOver >= 10) {
                 sb.append("X");
                 leftOver -= 10;
             } else if (leftOver >= 9) { // == would have been sufficient - but will not over think it - per TDD

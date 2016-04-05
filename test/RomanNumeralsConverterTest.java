@@ -17,6 +17,7 @@ public class RomanNumeralsConverterTest {
         assertEquals("Passing 10","X", converter.toRomanNumeral(10));
         assertEquals("Passing 9","IX", converter.toRomanNumeral(9));
 
+        assertEquals("Passing 50","L", converter.toRomanNumeral(50));
 
     }
 
