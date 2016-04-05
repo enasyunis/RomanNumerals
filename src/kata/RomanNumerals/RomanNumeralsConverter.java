@@ -6,7 +6,10 @@ public class RomanNumeralsConverter {
         StringBuilder sb = new StringBuilder();
         int leftOver = arabicNumber;
         while (leftOver > 0) {
-            if (leftOver >= 5) {
+            if (leftOver >= 10) {
+                sb.append("X");
+                leftOver -= 10;
+            } else if (leftOver >= 5) {
                 sb.append("V");
                 leftOver -= 5;
             } else if (leftOver >= 4) {

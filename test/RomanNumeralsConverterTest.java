@@ -13,6 +13,10 @@ public class RomanNumeralsConverterTest {
         assertEquals("Passing 5", "V", converter.toRomanNumeral(5));
         assertEquals("Passing 4","IV", converter.toRomanNumeral(4));
 
+
+        assertEquals("Passing 10","X", converter.toRomanNumeral(10));
+
+
     }
 
 }
