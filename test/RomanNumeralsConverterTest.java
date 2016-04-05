@@ -34,4 +34,10 @@ public class RomanNumeralsConverterTest {
 
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void WhenRomanNumeralsConverterIsPassedAnInvalidNumberItShouldFail() {
+        RomanNumeralsConverter converter = new RomanNumeralsConverter();
+        converter.toRomanNumeral(4000);
+    }
+
 }

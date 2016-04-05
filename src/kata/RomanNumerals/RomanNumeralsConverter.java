@@ -1,14 +1,21 @@
 package kata.RomanNumerals;
 
-
 public class RomanNumeralsConverter {
-    public String toRomanNumeral(Integer arabicNumber) {
-        StringBuilder sb = new StringBuilder();
+    public String toRomanNumeral(Integer arabicNumber) throws IllegalArgumentException {
+
         int leftOver = arabicNumber;
+
+        // test for out of bound numbers
+        if (leftOver >= 4000)
+            throw new IllegalArgumentException("Can not convert to Roman - " + arabicNumber + " - too large");
+
+
+
 
         /*
             Future Developer - The order of the statements matters!
          */
+        StringBuilder sb = new StringBuilder("");
         while (leftOver > 0) {
             if (leftOver >= 1000) {
                 sb.append("M");
