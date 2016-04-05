@@ -9,6 +9,9 @@ public class RomanNumeralsConverter {
             if (leftOver >= 50) {
                 sb.append("L");
                 leftOver -= 50;
+            } else if (leftOver >= 40) { // not a terminal point for == (if wishing to over think the 9 and 4)
+                sb.append("XL");
+                leftOver -= 40;
             } else if (leftOver >= 10) {
                 sb.append("X");
                 leftOver -= 10;
