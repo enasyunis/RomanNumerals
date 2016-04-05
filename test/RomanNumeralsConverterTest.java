@@ -1,12 +1,20 @@
 import kata.RomanNumerals.RomanNumeralsConverter;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 public class RomanNumeralsConverterTest {
+
+    private RomanNumeralsConverter converter;
+
+    @Before
+    public void setup() {
+        converter = new RomanNumeralsConverter();
+    }
+
     @Test
     public void WhenRomanNumeralsConverterIsPassedANumberItReturnsANumeral(){
-        RomanNumeralsConverter converter = new RomanNumeralsConverter();
 
         assertEquals("Passing 1", "I", converter.toRomanNumeral(1));
         assertEquals("Passing 2", "II", converter.toRomanNumeral(2));
@@ -39,10 +47,16 @@ public class RomanNumeralsConverterTest {
 
     }
 
+
+    // TODO :: find a better way to test illegals being thrown than multiple separate tests
     @Test(expected = IllegalArgumentException.class)
     public void WhenRomanNumeralsConverterIsPassedAnInvalidNumberItShouldFail() {
-        RomanNumeralsConverter converter = new RomanNumeralsConverter();
         converter.toRomanNumeral(4000);
     }
 
+
+    @Test(expected = IllegalArgumentException.class)
+    public void WhenRomanNumeralsConverterIsPassedAnInvalidNegativeNumberItShouldFail() {
+        converter.toRomanNumeral(-1);
+    }
 }

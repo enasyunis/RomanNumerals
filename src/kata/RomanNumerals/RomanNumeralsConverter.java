@@ -1,16 +1,25 @@
 package kata.RomanNumerals;
 
+/**
+ * Implementing the Rules based on http://agilekatas.co.uk/katas/romannumerals-kata as seen on April 5, 2016
+ */
 public class RomanNumeralsConverter {
+    /**
+     * Converting from Arabic Numeral to Roman Numeral
+     * @param arabicNumber the arabic number to be converted
+     * @return Roman Numeral
+     * @throws IllegalArgumentException - thrown when number exceeds 3999 or below zero
+     */
     public String toRomanNumeral(Integer arabicNumber) throws IllegalArgumentException {
 
         int leftOver = arabicNumber;
 
         // test for out of bound numbers
-        if (leftOver >= 4000)
-            throw new IllegalArgumentException("Can not convert to Roman - " + arabicNumber + " - too large");
+        if (leftOver >= 4000) // due to the kata rule of max 3 repeats - even though other online converters have allowed for 4 M's
+            throw new IllegalArgumentException("Can not convert to Roman beyond 3999 - the number (" + arabicNumber + ") is too large");
 
-
-
+        if (leftOver < 0)
+            throw new IllegalArgumentException("Can not convert to Roman below 0 - the number (" + arabicNumber + ") is too small");
 
         /*
             Future Developer - The order of the statements matters!
