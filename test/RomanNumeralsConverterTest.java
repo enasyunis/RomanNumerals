@@ -103,8 +103,18 @@ public class RomanNumeralsConverterTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void WhenRomanNumeralsConverterIsPassedTwoInvalidRomanCharacterShouldFail() {
+    public void WhenRomanNumeralsConverterIsPassedTwoInvalidRomanCharacterShouldFailVV() {
         converter.toArabicNumber("VV");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void WhenRomanNumeralsConverterIsPassedTwoInvalidRomanCharacterShouldFailDD() {
+        converter.toArabicNumber("DD");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void WhenRomanNumeralsConverterIsPassedTwoInvalidRomanCharacterShouldFailLL() {
+        converter.toArabicNumber("LL");
     }
 
 }
