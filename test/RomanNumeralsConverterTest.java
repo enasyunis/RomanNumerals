@@ -11,12 +11,10 @@ import static org.junit.Assert.assertTrue;
 
 /**
  * validating accuracy using
- *  http://www.onlineconversion.com/roman_numerals_advanced.htm and
- *  http://www.csgnetwork.com/csgromancnv.html
+ *  http://www.onlineconversion.com/roman_numerals_advanced.htm [strict] and
+ *  http://www.csgnetwork.com/csgromancnv.html [not strict]
  *
- *  INFO :: not enough rules to make clear decisions on design
- *  OPTIONS :: reduces the exactness on  one-to-one mapping between the two conversion methods and switch it to
- *              many-to-one conversion method (i.e. Roman to Arabic is a many to one while Arabic to Roman is one to one)
+ *  INFO :: not enough rules to make clear decisions on design - using above as test ideas
  */
 public class RomanNumeralsConverterTest {
 
@@ -118,22 +116,6 @@ public class RomanNumeralsConverterTest {
         converter.toArabicNumber("J");
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void WhenRomanNumeralsConverterIsPassedTwoInvalidRomanCharacterShouldFailVV() {
-        converter.toArabicNumber("VV");
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void WhenRomanNumeralsConverterIsPassedTwoInvalidRomanCharacterShouldFailDD() {
-        converter.toArabicNumber("DD");
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void WhenRomanNumeralsConverterIsPassedTwoInvalidRomanCharacterShouldFailLL() {
-        converter.toArabicNumber("LL");
-    }
-
-
     @Test
     public void WhenRomanNumeralConverterIsPassedThreeRomanCharsItReturnsANumber() {
         assertEquals("Passing MMM", 3000, converter.toArabicNumber("MMM"));
@@ -143,59 +125,6 @@ public class RomanNumeralsConverterTest {
 
         assertEquals("Passing MCM", 1900, converter.toArabicNumber("MCM"));
         assertEquals("Passing MCD", 1400, converter.toArabicNumber("MCD"));
-
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void WhenRomanNumeralsConverterIsPassedThreeInvalidRomanCharacterShouldFailCMD() {
-        converter.toArabicNumber("CMD"); // per the KATA description this is not mentioned - though it is not acceptable in the official converters!!!
-        // the toRomanNumeral properly converts 1400 to MCD and not CMD
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void WhenRomanNumeralsConverterIsPassedThreeInvalidRomanCharacterShouldFailXCL() {
-        converter.toArabicNumber("XCL"); // see the case for CMD
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void WhenRomanNumeralsConverterIsPassedThreeInvalidRomanCharacterShouldFailIXV() {
-        converter.toArabicNumber("IXV"); // see the case for CMD
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void WhenRomanNumeralsConverterIsPassedTwoInvalidRomanCharacterShouldFailXM() {
-        converter.toArabicNumber("XM");
-    }
-
-
-    @Test(expected = IllegalArgumentException.class)
-    public void WhenRomanNumeralsConverterIsPassedTwoInvalidRomanCharacterShouldFailID() {
-        converter.toArabicNumber("ID");
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void WhenRomanNumeralsConverterIsPassedTwoInvalidRomanCharacterShouldFailXD() {
-        converter.toArabicNumber("XD");
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void WhenRomanNumeralsConverterIsPassedTwoInvalidRomanCharacterShouldFailIC() {
-        converter.toArabicNumber("IC");
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void WhenRomanNumeralsConverterIsPassedThreeInvalidRomanCharacterShouldFailCDC() {
-        converter.toArabicNumber("CDC");
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void WhenRomanNumeralsConverterIsPassedThreeInvalidRomanCharacterShouldFailCMM() {
-        converter.toArabicNumber("CMM");
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void WhenRomanNumeralsConverterIsPassedThreeInvalidRomanCharacterShouldFailIXL() {
-        converter.toArabicNumber("IXL");
     }
 
     @Test
@@ -206,18 +135,28 @@ public class RomanNumeralsConverterTest {
     }
 
 
-    @Test(expected = IllegalArgumentException.class)
-    public void WhenRomanNumeralsConverterIsPassedFourInvalidRomanCharacterShouldFailIIII() {
-        converter.toArabicNumber("IIII");
-    }
-
-
     @Test
     public void WhenRomanNumeralsConverterIsCheckingValidRomansViaRegExShouldPass() {
         assertTrue(converter.isValidRomanNumeralUsingRegEx("M"));
         assertTrue(converter.isValidRomanNumeralUsingRegEx("MMM"));
         assertFalse(converter.isValidRomanNumeralUsingRegEx("MMMM"));
         assertTrue(converter.isValidRomanNumeralUsingRegEx("MMMCM"));
+        assertFalse(converter.isValidRomanNumeralUsingRegEx("IIII"));
+
+        assertFalse(converter.isValidRomanNumeralUsingRegEx("VV"));
+        assertFalse(converter.isValidRomanNumeralUsingRegEx("DD"));
+        assertFalse(converter.isValidRomanNumeralUsingRegEx("LL"));
+        assertFalse(converter.isValidRomanNumeralUsingRegEx("XM"));
+        assertFalse(converter.isValidRomanNumeralUsingRegEx("ID"));
+        assertFalse(converter.isValidRomanNumeralUsingRegEx("XD"));
+        assertFalse(converter.isValidRomanNumeralUsingRegEx("IC"));
+        assertFalse(converter.isValidRomanNumeralUsingRegEx("CMD")); // per online MCD is the correct represntation
+        assertFalse(converter.isValidRomanNumeralUsingRegEx("XCL"));
+        assertFalse(converter.isValidRomanNumeralUsingRegEx("IXV"));
+        assertFalse(converter.isValidRomanNumeralUsingRegEx("CDC"));
+        assertFalse(converter.isValidRomanNumeralUsingRegEx("CMM"));
+        assertFalse(converter.isValidRomanNumeralUsingRegEx("IXL"));
+
     }
 
 }
