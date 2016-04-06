@@ -83,7 +83,7 @@ public class RomanNumeralsConverter {
          *
          * Showing D, L, V more than once
          *
-         * Ordering
+         * Wrong Ordering : (DM, LD, LM, VX, VL, VD, VM, IL, IC, ID, IM)
          *
          * Multi-Subtraction options for 1400, 140, and 14 have only one legal form -
          *   subtraction when applied should be applied to the least significant letter
@@ -99,7 +99,7 @@ public class RomanNumeralsConverter {
         return romanNumeral.matches("^M{0,3}(CM|CD|D)?C{0,3}(XC|XL|L)?X{0,3}(IX|IV|V)?I{0,3}$");
     }
 
-    private int toArabicNumber(char romanNumeral) throws IllegalArgumentException {
+    private int toArabicNumber(char romanNumeral) {
         switch (romanNumeral) {
             case 'M':
                 return 1000;
@@ -116,86 +116,34 @@ public class RomanNumeralsConverter {
             case 'I':
                 return 1;
             default:
-                throw new IllegalArgumentException ("Not a roman numeral " + romanNumeral);
+                return 0; // regex should catch the rest
         }
     }
     private int toArabicNumberIfSpecialTwo(char charFirst, char charSecond) {
-        switch(charFirst) {
-            case 'D':
-                if (charSecond == 'D' || charSecond == 'M') {
-                    return -1;
-                }
-                break;
-            case 'C':
-                if (charSecond == 'M') {
-                    return 900;
-                } else if (charSecond == 'D') {
-                    return 400;
-                }
-                break;
-            case 'L':
-                if (charSecond != 'X' && charSecond != 'V' && charSecond != 'I') {
-                    return -1;
-                }
-                break;
-            case 'X':
-                if (charSecond == 'C') {
-                    return 90;
-                } else if (charSecond == 'L') {
-                    return 40;
-                } else if ((charSecond == 'D') || (charSecond == 'M')) { // illegal next character
-                    return -1;
-                }
-                break;
-            case 'V':
-                if (charSecond != 'I') { // illegal next character
-                    return -1;
-                }
-                break;
-            case 'I':
-                if (charSecond == 'X') {
-                    return 9;
-                } else if (charSecond == 'V') {
-                    return 4;
-                } else if (charSecond != 'I') { // illegal next character
-                    return -1;
-                }
-                break;
+        if (charFirst == 'C') {
+            if (charSecond == 'M') {
+                return 900;
+            } else if (charSecond == 'D') {
+                return 400;
+            }
+        } else if (charFirst == 'X') {
+            if (charSecond == 'C') {
+                return 90;
+            } else if (charSecond == 'L') {
+                return 40;
+            }
+        } else if (charFirst == 'I') {
+            if (charSecond == 'X') {
+                return 9;
+            } else if (charSecond == 'V') {
+                return 4;
+            }
         }
-        return 0; // not special two  or illegal either - return invalid value
+        return 0; // not special two
     }
 
 
-    private boolean isIllegalThreeCombinations(String romanNumeral) {
-        /* Multi-Subtraction options for 1400, 140, and 14 have only one legal form -
-                subtraction when applied should be applied to the least significant letter
-                that still provides for a correct number
-          */
-        if (romanNumeral.equals("CMD") || romanNumeral.equals("XCL") || romanNumeral.equals("IXV"))
-            return true;
 
-
-        // numbers that add to self!
-        if (romanNumeral.equals("CDC") || romanNumeral.equals("XLX") || romanNumeral.equals("IVI"))
-            return true;
-
-        // not applying subtraction to the lowest level
-        if (romanNumeral.equals("CMM") || romanNumeral.equals("XCC") || romanNumeral.equals("IXX") )
-            return true;
-
-        // illegally applying multiple subtractions
-        if (romanNumeral.equals("CCM") || romanNumeral.equals("CCD") ||
-                romanNumeral.equals("XXC") || romanNumeral.equals("XXL") ||
-                romanNumeral.equals("IIX") || romanNumeral.equals("IIV"))
-            return true;
-
-        // illegally applying subtractions on subtractions
-        if (romanNumeral.equals("IXL") || romanNumeral.equals("IXC") ||
-                romanNumeral.equals("XCD") || romanNumeral.equals("XCM"))
-            return true;
-
-        return false;
-    }
 
     /**
      * @param romanNumeral the string of roman numerals to be converted
@@ -219,9 +167,7 @@ public class RomanNumeralsConverter {
                 index++;
             } else { // two letters to consider
                 int validNumberIfSpecialTwo = toArabicNumberIfSpecialTwo(romanNumeral.charAt(index), romanNumeral.charAt(index+1));
-                if (validNumberIfSpecialTwo == -1) { // invalid
-                    throw new IllegalArgumentException ("Not a roman numeral " + romanNumeral);
-                } else if (validNumberIfSpecialTwo > 0) { // are special
+                if (validNumberIfSpecialTwo > 0) { // are special
                     arabicNumber += validNumberIfSpecialTwo;
                     index += 2;
                 } else { // regular combo - treat one at a time
