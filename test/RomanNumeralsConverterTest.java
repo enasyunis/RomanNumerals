@@ -3,6 +3,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 
 // TODO:: the test cases need to come from a file for illegal combination possibilities!!!
@@ -212,7 +214,10 @@ public class RomanNumeralsConverterTest {
 
     @Test
     public void WhenRomanNumeralsConverterIsCheckingValidRomansViaRegExShouldPass() {
-        assert(converter.isValidRomanNumeralUsingRegEx("M"));
+        assertTrue(converter.isValidRomanNumeralUsingRegEx("M"));
+        assertTrue(converter.isValidRomanNumeralUsingRegEx("MMM"));
+        assertFalse(converter.isValidRomanNumeralUsingRegEx("MMMM"));
+        assertTrue(converter.isValidRomanNumeralUsingRegEx("MMMCM"));
     }
 
 }

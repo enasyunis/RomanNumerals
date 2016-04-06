@@ -73,7 +73,7 @@ public class RomanNumeralsConverter {
     }
 
     public boolean isValidRomanNumeralUsingRegEx(String romanNumeral) {
-        return romanNumeral.matches("^M{0,3}$");
+        return romanNumeral.matches("^M{0,3}(CM|CD|D)?C{0,3}(XC|XL|L)?X{0,3}(IX|IV|V)?I{0,3}$");
     }
 
     private int toArabicNumber(char romanNumeral) throws IllegalArgumentException {
