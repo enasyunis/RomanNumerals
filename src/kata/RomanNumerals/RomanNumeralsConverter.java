@@ -93,9 +93,20 @@ public class RomanNumeralsConverter {
 
     public int toArabicNumber(String romanNumeral) throws IllegalArgumentException {
 
-        if (romanNumeral.length() == 1) {
-            return toArabicNumber(romanNumeral.charAt(0));
+        int index=0;
+        int length=romanNumeral.length();
+        int arabicNumber = 0;
+
+        while (index < length) {
+            if (index == length-1) {
+                arabicNumber += toArabicNumber(romanNumeral.charAt(index));
+                index++;
+            } else { // two letters to consider
+                arabicNumber += toArabicNumber(romanNumeral.charAt(index));
+                index++;
+            }
         }
-        return 2000;
+
+        return arabicNumber;
     }
 }

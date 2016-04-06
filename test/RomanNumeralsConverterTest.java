@@ -75,6 +75,7 @@ public class RomanNumeralsConverterTest {
     @Test
     public void WhenRomanNumeralConverterIsPassedTwoRomanCharsItReturnsANumber() {
         assertEquals("Passing MM", 2000, converter.toArabicNumber("MM"));
+        assertEquals("Passing MC", 1100, converter.toArabicNumber("MC"));
     }
 
     @Test(expected = IllegalArgumentException.class)
