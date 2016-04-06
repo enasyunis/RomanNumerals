@@ -108,6 +108,9 @@ public class RomanNumeralsConverter {
                 } else if (romanNumeral.substring(index, index+2).equals("CD")) {
                         arabicNumber += 400;
                         index += 2;
+                } else if (romanNumeral.substring(index, index+2).equals("XC")) {
+                    arabicNumber += 90;
+                    index += 2;
                 } else {
                     arabicNumber += toArabicNumber(romanNumeral.charAt(index));
                     index++;
