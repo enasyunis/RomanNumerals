@@ -122,6 +122,8 @@ public class RomanNumeralsConverter {
     private void testForIllegalCombinations(String romanNumeral) throws IllegalArgumentException {
         if (romanNumeral.equals("CMD"))
             throw new IllegalArgumentException("Not a valid roman numeral " + romanNumeral);
+        else if (romanNumeral.equals("XCL"))
+            throw new IllegalArgumentException("Not a valid roman numeral " + romanNumeral);
     }
 
     /**

@@ -133,9 +133,14 @@ public class RomanNumeralsConverterTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void WhenRomanNumeralsConverterIsPassedThreeInvalidRomanCharacterShouldFailLL() {
+    public void WhenRomanNumeralsConverterIsPassedThreeInvalidRomanCharacterShouldFailCMD() {
         converter.toArabicNumber("CMD"); // per the KATA description this is not mentioned - though it is not acceptable in the official converters!!!
         // the toRomanNumeral properly converts 1400 to MCD and not CMD
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void WhenRomanNumeralsConverterIsPassedThreeInvalidRomanCharacterShouldFailXCL() {
+        converter.toArabicNumber("XCL"); // see the case for CMD
     }
 
 
