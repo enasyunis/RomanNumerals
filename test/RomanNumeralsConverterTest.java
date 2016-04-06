@@ -86,7 +86,8 @@ public class RomanNumeralsConverterTest {
         assertEquals("Passing XC", 90, converter.toArabicNumber("XC"));
         assertEquals("Passing CX", 110, converter.toArabicNumber("CX"));
 
-
+        assertEquals("Passing XL", 40, converter.toArabicNumber("XL"));
+        assertEquals("Passing LX", 60, converter.toArabicNumber("LX"));
 
     }
 
