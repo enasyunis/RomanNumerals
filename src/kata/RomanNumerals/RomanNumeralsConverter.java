@@ -70,7 +70,7 @@ public class RomanNumeralsConverter {
         return sb.toString();
     }
 
-    private int toArabicNumber(char romanNumeral) {
+    private int toArabicNumber(char romanNumeral) throws IllegalArgumentException {
         switch (romanNumeral) {
             case 'M':
                 return 1000;
@@ -87,7 +87,7 @@ public class RomanNumeralsConverter {
             case 'I':
                 return 1;
             default:
-                return -1;
+                throw new IllegalArgumentException ("Not a roman numeral " + romanNumeral);
         }
     }
 
