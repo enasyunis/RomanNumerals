@@ -63,5 +63,6 @@ public class RomanNumeralsConverterTest {
     @Test
     public void WhenRomanNumeralConverterIsPassedASingleRomanCharItReturnsANumber() {
         assertEquals("Passing M", 1000, converter.toArabicNumber("M"));
+        assertEquals("Passing D", 500, converter.toArabicNumber("D"));
     }
 }

@@ -70,8 +70,21 @@ public class RomanNumeralsConverter {
         return sb.toString();
     }
 
-    public int toArabicNumber(String romanNumeral) {
-        int arabicNumber = 1000;
+    public int toArabicNumber(String romanNumeral) throws IllegalArgumentException {
+        int arabicNumber;
+
+        char currentLetter = romanNumeral.charAt(0);
+
+        switch (currentLetter) {
+            case 'M':
+                arabicNumber = 1000;
+                break;
+            case 'D':
+                arabicNumber = 500;
+                break;
+            default:
+                throw new IllegalArgumentException ("Not a proper Roman Numeral (" + romanNumeral + ")");
+        }
 
         return arabicNumber;
     }
