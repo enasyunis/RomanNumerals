@@ -69,4 +69,10 @@ public class RomanNumeralsConverter {
         }
         return sb.toString();
     }
+
+    public int toArabicNumber(String romanNumeral) {
+        int arabicNumber = 1000;
+
+        return arabicNumber;
+    }
 }

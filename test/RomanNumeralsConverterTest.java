@@ -59,4 +59,9 @@ public class RomanNumeralsConverterTest {
     public void WhenRomanNumeralsConverterIsPassedAnInvalidNegativeNumberItShouldFail() {
         converter.toRomanNumeral(-1);
     }
+
+    @Test
+    public void WhenRomanNumeralConverterIsPassedASingleRomanCharItReturnsANumber() {
+        assertEquals("Passing M", 1000, converter.toArabicNumber("M"));
+    }
 }
