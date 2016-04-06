@@ -64,5 +64,10 @@ public class RomanNumeralsConverterTest {
     public void WhenRomanNumeralConverterIsPassedASingleRomanCharItReturnsANumber() {
         assertEquals("Passing M", 1000, converter.toArabicNumber("M"));
         assertEquals("Passing D", 500, converter.toArabicNumber("D"));
+        assertEquals("Passing C", 100, converter.toArabicNumber("C"));
+        assertEquals("Passing L", 50, converter.toArabicNumber("L"));
+        assertEquals("Passing X", 10, converter.toArabicNumber("X"));
+        assertEquals("Passing V", 5, converter.toArabicNumber("V"));
+        assertEquals("Passing I", 1, converter.toArabicNumber("I"));
     }
 }

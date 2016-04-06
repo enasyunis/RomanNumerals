@@ -82,6 +82,21 @@ public class RomanNumeralsConverter {
             case 'D':
                 arabicNumber = 500;
                 break;
+            case 'C':
+                arabicNumber = 100;
+                break;
+            case 'L':
+                arabicNumber = 50;
+                break;
+            case 'X':
+                arabicNumber = 10;
+                break;
+            case 'V':
+                arabicNumber = 5;
+                break;
+            case 'I':
+                arabicNumber = 1;
+                break;
             default:
                 throw new IllegalArgumentException ("Not a proper Roman Numeral (" + romanNumeral + ")");
         }
