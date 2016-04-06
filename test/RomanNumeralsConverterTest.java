@@ -150,7 +150,22 @@ public class RomanNumeralsConverterTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void WhenRomanNumeralsConverterIsPassedTwoInvalidRomanCharacterShouldFailXM() {
-        converter.toArabicNumber("XM"); // see the case for CMD
+        converter.toArabicNumber("XM");
     }
 
+
+    @Test(expected = IllegalArgumentException.class)
+    public void WhenRomanNumeralsConverterIsPassedTwoInvalidRomanCharacterShouldFailID() {
+        converter.toArabicNumber("ID");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void WhenRomanNumeralsConverterIsPassedTwoInvalidRomanCharacterShouldFailXD() {
+        converter.toArabicNumber("XD");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void WhenRomanNumeralsConverterIsPassedTwoInvalidRomanCharacterShouldFailIC() {
+        converter.toArabicNumber("IC");
+    }
 }
