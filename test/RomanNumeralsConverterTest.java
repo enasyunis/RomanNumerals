@@ -143,5 +143,9 @@ public class RomanNumeralsConverterTest {
         converter.toArabicNumber("XCL"); // see the case for CMD
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void WhenRomanNumeralsConverterIsPassedThreeInvalidRomanCharacterShouldFailIXV() {
+        converter.toArabicNumber("IXV"); // see the case for CMD
+    }
 
 }

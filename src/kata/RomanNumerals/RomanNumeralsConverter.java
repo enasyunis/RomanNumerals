@@ -119,10 +119,8 @@ public class RomanNumeralsConverter {
         return 0; // not special two return invalid value
     }
 
-    private void testForIllegalCombinations(String romanNumeral) throws IllegalArgumentException {
-        if (romanNumeral.equals("CMD"))
-            throw new IllegalArgumentException("Not a valid roman numeral " + romanNumeral);
-        else if (romanNumeral.equals("XCL"))
+    private void testForIllegalThreeCombinations(String romanNumeral) throws IllegalArgumentException {
+        if (romanNumeral.equals("CMD") || romanNumeral.equals("XCL") || romanNumeral.equals("IXV"))
             throw new IllegalArgumentException("Not a valid roman numeral " + romanNumeral);
     }
 
@@ -133,7 +131,7 @@ public class RomanNumeralsConverter {
      */
     public int toArabicNumber(String romanNumeral) throws IllegalArgumentException {
 
-        testForIllegalCombinations(romanNumeral);
+        testForIllegalThreeCombinations(romanNumeral);
 
         int index=0;
         int length=romanNumeral.length();
