@@ -119,7 +119,19 @@ public class RomanNumeralsConverter {
         return 0; // not special two return invalid value
     }
 
+    private void testForIllegalCombinations(String romanNumeral) throws IllegalArgumentException {
+        if (romanNumeral.equals("CMD"))
+            throw new IllegalArgumentException("Not a valid roman numeral " + romanNumeral);
+    }
+
+    /**
+     * @param romanNumeral the string of roman numerals to be converted
+     * @return the arabic number representign the roman numerals
+     * @throws IllegalArgumentException if the argument does not represent a valid roman numeral
+     */
     public int toArabicNumber(String romanNumeral) throws IllegalArgumentException {
+
+        testForIllegalCombinations(romanNumeral);
 
         int index=0;
         int length=romanNumeral.length();

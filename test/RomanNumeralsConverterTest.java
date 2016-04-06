@@ -130,10 +130,12 @@ public class RomanNumeralsConverterTest {
         assertEquals("Passing MCM", 1900, converter.toArabicNumber("MCM"));
         assertEquals("Passing MCD", 1400, converter.toArabicNumber("MCD"));
 
-        // NOTE :: per the KATA description this is not mentioned - though it is not acceptable in the official converters!!!
-        // TODO :: Following the testing for toRomanNumeral(1400) - our system has to return the same result
-        assertEquals("Passing CMD", 1400, converter.toArabicNumber("CMD")); // this was a head scratch-er !!!
+    }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void WhenRomanNumeralsConverterIsPassedThreeInvalidRomanCharacterShouldFailLL() {
+        converter.toArabicNumber("CMD"); // per the KATA description this is not mentioned - though it is not acceptable in the official converters!!!
+        // the toRomanNumeral properly converts 1400 to MCD and not CMD
     }
 
 
