@@ -78,6 +78,7 @@ public class RomanNumeralsConverterTest {
         assertEquals("Passing MC", 1100, converter.toArabicNumber("MC"));
 
         assertEquals("Passing CM", 900, converter.toArabicNumber("CM"));
+        assertEquals("Passing CC", 200, converter.toArabicNumber("CC"));
 
     }
 
