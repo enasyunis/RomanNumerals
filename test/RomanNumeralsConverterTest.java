@@ -168,4 +168,14 @@ public class RomanNumeralsConverterTest {
     public void WhenRomanNumeralsConverterIsPassedTwoInvalidRomanCharacterShouldFailIC() {
         converter.toArabicNumber("IC");
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void WhenRomanNumeralsConverterIsPassedThreeInvalidRomanCharacterShouldFailCDC() {
+        converter.toArabicNumber("CDC");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void WhenRomanNumeralsConverterIsPassedThreeInvalidRomanCharacterShouldFailCMM() {
+        converter.toArabicNumber("CMM");
+    }
 }
