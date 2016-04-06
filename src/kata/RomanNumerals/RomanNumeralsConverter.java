@@ -73,6 +73,29 @@ public class RomanNumeralsConverter {
     }
 
     public boolean isValidRomanNumeralUsingRegEx(String romanNumeral) {
+        // Accounts for :: numbers that add to self!
+        if (romanNumeral.matches("CDC|XLX|IVI"))
+                return false;
+        /**
+         * Accounts for the illegal representation ::
+         *
+         * Repeat of more than three of M, C, X, I in a row
+         *
+         * Showing D, L, V more than once
+         *
+         * Ordering
+         *
+         * Multi-Subtraction options for 1400, 140, and 14 have only one legal form -
+         *   subtraction when applied should be applied to the least significant letter
+         *   that still provides for a correct number  (CMD, XCL, IXV)
+         *
+         * not applying subtraction to the lowest level (CMM, XCC, IXX)
+         *
+         * Applying multiple subtractions (CCM, CCD, XXC, XXL, IIX, IIV)
+         *
+         * Applying subtractions on other subtractions (IXL, IXC, XCD, XCM)
+         *
+         */
         return romanNumeral.matches("^M{0,3}(CM|CD|D)?C{0,3}(XC|XL|L)?X{0,3}(IX|IV|V)?I{0,3}$");
     }
 
@@ -142,13 +165,6 @@ public class RomanNumeralsConverter {
         return 0; // not special two  or illegal either - return invalid value
     }
 
-    private boolean isIllegalFourCombinations(String romanNumeral) {
-        if (romanNumeral.equals("IIII") || romanNumeral.equals("XXXX")
-                || romanNumeral.equals("CCCC") || romanNumeral.equals("MMMM"))
-            return true;
-
-        return false;
-    }
 
     private boolean isIllegalThreeCombinations(String romanNumeral) {
         /* Multi-Subtraction options for 1400, 140, and 14 have only one legal form -
@@ -188,23 +204,15 @@ public class RomanNumeralsConverter {
      */
     public int toArabicNumber(String romanNumeral) throws IllegalArgumentException {
 
+        if (! isValidRomanNumeralUsingRegEx(romanNumeral)) {
+            throw new IllegalArgumentException("Not a valid roman numeral " + romanNumeral);
+        }
+
         int index=0;
         int length=romanNumeral.length();
         int arabicNumber = 0;
 
         while (index < length) {
-
-            if (index < length-3) { // at least four characters left
-                if (isIllegalFourCombinations(romanNumeral.substring(index, index+4))) {
-                    throw new IllegalArgumentException("Not a valid roman numeral " + romanNumeral);
-                }
-            }
-
-            if (index < length-2) { // at least three characters left
-                if (isIllegalThreeCombinations(romanNumeral.substring(index, index+3))) {
-                    throw new IllegalArgumentException("Not a valid roman numeral " + romanNumeral);
-                }
-            }
 
             if (index == length-1) {
                 arabicNumber += toArabicNumber(romanNumeral.charAt(index));
