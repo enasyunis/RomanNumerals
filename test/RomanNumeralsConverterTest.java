@@ -71,7 +71,6 @@ public class RomanNumeralsConverterTest {
         assertEquals("Passing I", 1, converter.toArabicNumber("I"));
     }
 
-
     @Test
     public void WhenRomanNumeralConverterIsPassedTwoRomanCharsItReturnsANumber() {
         assertEquals("Passing MM", 2000, converter.toArabicNumber("MM"));
@@ -116,5 +115,23 @@ public class RomanNumeralsConverterTest {
     public void WhenRomanNumeralsConverterIsPassedTwoInvalidRomanCharacterShouldFailLL() {
         converter.toArabicNumber("LL");
     }
+
+
+    @Test
+    public void WhenRomanNumeralConverterIsPassedThreeRomanCharsItReturnsANumber() {
+        assertEquals("Passing MMM", 3000, converter.toArabicNumber("MMM"));
+        assertEquals("Passing CCC", 300, converter.toArabicNumber("CCC"));
+        assertEquals("Passing XXX", 30, converter.toArabicNumber("XXX"));
+        assertEquals("Passing III", 3, converter.toArabicNumber("III"));
+
+        assertEquals("Passing MCM", 1900, converter.toArabicNumber("MCM"));
+        assertEquals("Passing MCD", 1400, converter.toArabicNumber("MCD"));
+
+        // NOTE :: per the KATA description this is legal - though it is not on official converters!!!
+        // INFO :: if the rules are to be changed, this affects also RomanNumeral Generation!!!
+        assertEquals("Passing CMD", 1400, converter.toArabicNumber("CMD")); // this was a head scratch-er !!!
+
+    }
+
 
 }
