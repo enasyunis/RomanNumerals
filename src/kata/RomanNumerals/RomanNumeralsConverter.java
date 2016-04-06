@@ -102,8 +102,13 @@ public class RomanNumeralsConverter {
                 arabicNumber += toArabicNumber(romanNumeral.charAt(index));
                 index++;
             } else { // two letters to consider
-                arabicNumber += toArabicNumber(romanNumeral.charAt(index));
-                index++;
+                if (romanNumeral.substring(index, index+2).equals("CM")) {
+                    arabicNumber += 900;
+                    index += 2;
+                } else {
+                    arabicNumber += toArabicNumber(romanNumeral.charAt(index));
+                    index++;
+                }
             }
         }
 
