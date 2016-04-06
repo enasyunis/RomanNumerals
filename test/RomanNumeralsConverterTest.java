@@ -89,6 +89,9 @@ public class RomanNumeralsConverterTest {
         assertEquals("Passing XL", 40, converter.toArabicNumber("XL"));
         assertEquals("Passing LX", 60, converter.toArabicNumber("LX"));
 
+        assertEquals("Passing IX", 9, converter.toArabicNumber("IX"));
+        assertEquals("Passing XI", 11, converter.toArabicNumber("XI"));
+
     }
 
     @Test(expected = IllegalArgumentException.class)

@@ -90,6 +90,29 @@ public class RomanNumeralsConverter {
                 throw new IllegalArgumentException ("Not a roman numeral " + romanNumeral);
         }
     }
+    private int toArabicNumberIfSpecialTwo(char charFirst, char charSecond) {
+        if (charFirst == 'C') {
+            if (charSecond == 'M') {
+                return 900;
+            } else if (charSecond == 'D') {
+                return 400;
+            }
+        } else if (charFirst == 'X') {
+            if (charSecond == 'C') {
+                return 90;
+            } else if (charSecond == 'L') {
+                return 40;
+            }
+        } else if (charFirst == 'I') {
+            if (charSecond == 'X') {
+                return 9;
+            } else if (charSecond == 'V') {
+                return 4;
+            }
+        }
+
+        return 0; // not special two return invalid value
+    }
 
     public int toArabicNumber(String romanNumeral) throws IllegalArgumentException {
 
@@ -102,19 +125,11 @@ public class RomanNumeralsConverter {
                 arabicNumber += toArabicNumber(romanNumeral.charAt(index));
                 index++;
             } else { // two letters to consider
-                if (romanNumeral.substring(index, index+2).equals("CM")) {
-                    arabicNumber += 900;
+                int validNumberIfSpecialTwo = toArabicNumberIfSpecialTwo(romanNumeral.charAt(index), romanNumeral.charAt(index+1));
+                if (validNumberIfSpecialTwo > 0) { // are special
+                    arabicNumber += validNumberIfSpecialTwo;
                     index += 2;
-                } else if (romanNumeral.substring(index, index+2).equals("CD")) {
-                        arabicNumber += 400;
-                        index += 2;
-                } else if (romanNumeral.substring(index, index+2).equals("XC")) {
-                    arabicNumber += 90;
-                    index += 2;
-                } else if (romanNumeral.substring(index, index+2).equals("XL")) {
-                    arabicNumber += 40;
-                    index += 2;
-                } else {
+                } else { // regular combo - treat one at a time
                     arabicNumber += toArabicNumber(romanNumeral.charAt(index));
                     index++;
                 }
