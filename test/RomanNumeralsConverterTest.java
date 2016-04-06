@@ -44,6 +44,9 @@ public class RomanNumeralsConverterTest {
         assertEquals("Passing 3999","MMMCMXCIX", converter.toRomanNumeral(3999)); // max number
         assertEquals("Passing 0","", converter.toRomanNumeral(0)); // min number
 
+        // testing the 1400 case if it returns CMD (invalid) or MCD (valid)
+        assertEquals("Passing 1400","MCD", converter.toRomanNumeral(1400));
+
 
     }
 
@@ -127,8 +130,8 @@ public class RomanNumeralsConverterTest {
         assertEquals("Passing MCM", 1900, converter.toArabicNumber("MCM"));
         assertEquals("Passing MCD", 1400, converter.toArabicNumber("MCD"));
 
-        // NOTE :: per the KATA description this is legal - though it is not on official converters!!!
-        // INFO :: if the rules are to be changed, this affects also RomanNumeral Generation!!!
+        // NOTE :: per the KATA description this is not mentioned - though it is not acceptable in the official converters!!!
+        // TODO :: Following the testing for toRomanNumeral(1400) - our system has to return the same result
         assertEquals("Passing CMD", 1400, converter.toArabicNumber("CMD")); // this was a head scratch-er !!!
 
     }
