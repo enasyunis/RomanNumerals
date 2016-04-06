@@ -70,4 +70,10 @@ public class RomanNumeralsConverterTest {
         assertEquals("Passing V", 5, converter.toArabicNumber("V"));
         assertEquals("Passing I", 1, converter.toArabicNumber("I"));
     }
+
+
+    @Test
+    public void WhenRomanNumeralConverterIsPassedTwoRomanCharsItReturnsANumber() {
+        assertEquals("Passing MM", 2000, converter.toArabicNumber("MM"));
+    }
 }

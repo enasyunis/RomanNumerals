@@ -70,37 +70,32 @@ public class RomanNumeralsConverter {
         return sb.toString();
     }
 
-    public int toArabicNumber(String romanNumeral) throws IllegalArgumentException {
-        int arabicNumber;
-
-        char currentLetter = romanNumeral.charAt(0);
-
-        switch (currentLetter) {
+    private int toArabicNumber(char romanNumeral) {
+        switch (romanNumeral) {
             case 'M':
-                arabicNumber = 1000;
-                break;
+                return 1000;
             case 'D':
-                arabicNumber = 500;
-                break;
+                return 500;
             case 'C':
-                arabicNumber = 100;
-                break;
+                return 100;
             case 'L':
-                arabicNumber = 50;
-                break;
+                return 50;
             case 'X':
-                arabicNumber = 10;
-                break;
+                return 10;
             case 'V':
-                arabicNumber = 5;
-                break;
+                return 5;
             case 'I':
-                arabicNumber = 1;
-                break;
+                return 1;
             default:
-                throw new IllegalArgumentException ("Not a proper Roman Numeral (" + romanNumeral + ")");
+                return -1;
         }
+    }
 
-        return arabicNumber;
+    public int toArabicNumber(String romanNumeral) throws IllegalArgumentException {
+
+        if (romanNumeral.length() == 1) {
+            return toArabicNumber(romanNumeral.charAt(0));
+        }
+        return 2000;
     }
 }
