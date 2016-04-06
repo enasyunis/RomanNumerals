@@ -178,4 +178,9 @@ public class RomanNumeralsConverterTest {
     public void WhenRomanNumeralsConverterIsPassedThreeInvalidRomanCharacterShouldFailCMM() {
         converter.toArabicNumber("CMM");
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void WhenRomanNumeralsConverterIsPassedThreeInvalidRomanCharacterShouldFailIXL() {
+        converter.toArabicNumber("IXL");
+    }
 }

@@ -151,15 +151,18 @@ public class RomanNumeralsConverter {
             return true;
 
         // not applying subtraction to the lowest level
-        if (romanNumeral.equals("CMM") || romanNumeral.equals("CDD") ||
-                romanNumeral.equals("XCC") || romanNumeral.equals("XLL") ||
-                romanNumeral.equals("IXX") || romanNumeral.equals("IVV"))
+        if (romanNumeral.equals("CMM") || romanNumeral.equals("XCC") || romanNumeral.equals("IXX") )
             return true;
 
         // illegally applying multiple subtractions
         if (romanNumeral.equals("CCM") || romanNumeral.equals("CCD") ||
                 romanNumeral.equals("XXC") || romanNumeral.equals("XXL") ||
                 romanNumeral.equals("IIX") || romanNumeral.equals("IIV"))
+            return true;
+
+        // illegally applying subtractions on subtractions
+        if (romanNumeral.equals("IXL") || romanNumeral.equals("IXC") ||
+                romanNumeral.equals("XCD") || romanNumeral.equals("XCM"))
             return true;
 
         return false;
