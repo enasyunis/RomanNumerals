@@ -4,6 +4,9 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
+
+// TODO:: the test cases need to come from a file for illegal combination possibilities!!!
+
 public class RomanNumeralsConverterTest {
 
     private RomanNumeralsConverter converter;
@@ -183,4 +186,18 @@ public class RomanNumeralsConverterTest {
     public void WhenRomanNumeralsConverterIsPassedThreeInvalidRomanCharacterShouldFailIXL() {
         converter.toArabicNumber("IXL");
     }
+
+    @Test
+    public void WhenRomanNumeralsConverterIsPassedLongValidRomanCharacterShouldPass() {
+        assertEquals("Passing MMMCMXCIX", 3999, converter.toArabicNumber("MMMCMXCIX"));
+
+        assertEquals("Passing MMMCMXCVIII", 3998, converter.toArabicNumber("MMMCMXCVIII"));
+    }
+
+
+    @Test(expected = IllegalArgumentException.class)
+    public void WhenRomanNumeralsConverterIsPassedFourInvalidRomanCharacterShouldFailIIII() {
+        converter.toArabicNumber("IIII");
+    }
+
 }

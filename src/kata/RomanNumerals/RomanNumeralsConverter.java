@@ -90,7 +90,7 @@ public class RomanNumeralsConverter {
                 throw new IllegalArgumentException ("Not a roman numeral " + romanNumeral);
         }
     }
-    private int toArabicNumberIfSpecialTwo(char charFirst, char charSecond) throws IllegalArgumentException {
+    private int toArabicNumberIfSpecialTwo(char charFirst, char charSecond) {
         switch(charFirst) {
             case 'D':
                 if (charSecond == 'D' || charSecond == 'M') {
@@ -136,8 +136,15 @@ public class RomanNumeralsConverter {
         return 0; // not special two  or illegal either - return invalid value
     }
 
+    private boolean isIllegalFourCombinations(String romanNumeral) {
+        if (romanNumeral.equals("IIII") || romanNumeral.equals("XXXX")
+                || romanNumeral.equals("CCCC") || romanNumeral.equals("MMMM"))
+            return true;
 
-    private boolean isIllegalThreeCombinations(String romanNumeral) throws IllegalArgumentException {
+        return false;
+    }
+
+    private boolean isIllegalThreeCombinations(String romanNumeral) {
         /* Multi-Subtraction options for 1400, 140, and 14 have only one legal form -
                 subtraction when applied should be applied to the least significant letter
                 that still provides for a correct number
@@ -180,6 +187,12 @@ public class RomanNumeralsConverter {
         int arabicNumber = 0;
 
         while (index < length) {
+
+            if (index < length-3) { // at least four characters left
+                if (isIllegalFourCombinations(romanNumeral.substring(index, index+4))) {
+                    throw new IllegalArgumentException("Not a valid roman numeral " + romanNumeral);
+                }
+            }
 
             if (index < length-2) { // at least three characters left
                 if (isIllegalThreeCombinations(romanNumeral.substring(index, index+3))) {
