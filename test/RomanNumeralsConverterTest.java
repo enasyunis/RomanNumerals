@@ -7,6 +7,15 @@ import static org.junit.Assert.assertEquals;
 
 // TODO:: the test cases need to come from a file for illegal combination possibilities!!!
 
+/**
+ * validating accuracy using
+ *  http://www.onlineconversion.com/roman_numerals_advanced.htm and
+ *  http://www.csgnetwork.com/csgromancnv.html
+ *
+ *  INFO :: not enough rules to make clear decisions on design
+ *  OPTIONS :: reduces the exactness on  one-to-one mapping between the two conversion methods and switch it to
+ *              many-to-one conversion method (i.e. Roman to Arabic is a many to one while Arabic to Roman is one to one)
+ */
 public class RomanNumeralsConverterTest {
 
     private RomanNumeralsConverter converter;
@@ -198,6 +207,12 @@ public class RomanNumeralsConverterTest {
     @Test(expected = IllegalArgumentException.class)
     public void WhenRomanNumeralsConverterIsPassedFourInvalidRomanCharacterShouldFailIIII() {
         converter.toArabicNumber("IIII");
+    }
+
+
+    @Test
+    public void WhenRomanNumeralsConverterIsCheckingValidRomansViaRegExShouldPass() {
+        assert(converter.isValidRomanNumeralUsingRegEx("M"));
     }
 
 }

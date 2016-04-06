@@ -1,5 +1,7 @@
 package kata.RomanNumerals;
 
+import java.util.regex.Pattern;
+
 /**
  * Implementing the Rules based on http://agilekatas.co.uk/katas/romannumerals-kata as seen on April 5, 2016
  */
@@ -68,6 +70,10 @@ public class RomanNumeralsConverter {
             }
         }
         return sb.toString();
+    }
+
+    public boolean isValidRomanNumeralUsingRegEx(String romanNumeral) {
+        return romanNumeral.matches("^M{0,3}$");
     }
 
     private int toArabicNumber(char romanNumeral) throws IllegalArgumentException {
