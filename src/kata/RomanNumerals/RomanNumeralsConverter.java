@@ -90,7 +90,7 @@ public class RomanNumeralsConverter {
                 throw new IllegalArgumentException ("Not a roman numeral " + romanNumeral);
         }
     }
-    private int toArabicNumberIfSpecialTwo(char charFirst, char charSecond) {
+    private int toArabicNumberIfSpecialTwo(char charFirst, char charSecond) throws IllegalArgumentException {
         if (charFirst == 'C') {
             if (charSecond == 'M') {
                 return 900;
@@ -109,6 +109,11 @@ public class RomanNumeralsConverter {
             } else if (charSecond == 'V') {
                 return 4;
             }
+        }
+
+        // testing illegal twos
+        if ((charFirst == charSecond) && (charFirst == 'V' || charFirst == 'L' || charFirst == 'D')) {
+            throw new IllegalArgumentException("Not a roman numeral " + charFirst + charSecond);
         }
 
         return 0; // not special two return invalid value

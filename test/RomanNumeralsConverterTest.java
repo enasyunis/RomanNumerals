@@ -102,5 +102,9 @@ public class RomanNumeralsConverterTest {
         converter.toArabicNumber("J");
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void WhenRomanNumeralsConverterIsPassedTwoInvalidRomanCharacterShouldFail() {
+        converter.toArabicNumber("VV");
+    }
 
 }
